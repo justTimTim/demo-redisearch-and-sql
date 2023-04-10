@@ -1,0 +1,62 @@
+type Query {
+    findFirstByCauseSql(causeId: String): Dwt
+    findFirstByCauseRedis(causeId: String): Dwt
+    searchSql(filter: Filter): [Dwt]
+    searchRedis(filter: Filter): [Dwt]
+    searchRedisStream(filter: Filter): [Dwt]
+    aggregateStream(filter: Filter): [TopCauses]
+    aggregateSql(filter: Filter): [TopCauses]
+    aggregateCustom(filter: Filter): [TopCauses]
+}
+
+input Filter {
+    workPlace: [String]
+    beginDate: [LocalDateTime]
+    cause: [String]
+}
+
+type TopCauses {
+    cause: String
+    count: Int
+}
+
+type Dwt {
+    id: String
+    beginDate: LocalDateTime
+    endDate: LocalDateTime
+    area: Place
+    cause: Cause
+    description: String
+    shift: String
+    brigade: String
+    fixer: Fixer
+    responsible: String
+    created: LocalDateTime
+    createdBy: String
+    updated: LocalDateTime
+    updateBy: String
+    isActive: Boolean
+}
+
+type Place {
+    id: String
+    name:String
+    country: String
+    level: Level
+}
+type Level {
+    id: String
+    name: String
+}
+type Fixer {
+    id: String
+    name: String
+}
+type Cause {
+    id: String
+    name: String
+    description: String
+}
+
+
+scalar LocalDateTime
