@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_name
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 8
+
+  jpa:
+    show-sql: false
+    open-in-view: false
+  liquibase:
+    enabled: true
+    change-log: classpath:changelog/db.changelog-master.yaml
+
+
+dgs:
+  graphql:
+    schema-locations:
+      - classpath*:schema/**/*.graphql*
+
+server:
+  port: 8585
+
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: [ "health","prometheus", "metrics" ]
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
