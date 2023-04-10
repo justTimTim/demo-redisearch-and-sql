@@ -1,5 +1,7 @@
 # Getting Started
 
+First of all, you need to start the Postgres instance and Redis DB, and change application.yml for your postgres credential.
+
 ### Steps
 
 1. Create level 
